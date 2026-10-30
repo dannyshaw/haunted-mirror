@@ -1,0 +1,5 @@
+.git
+.venv
+data
+feeds.yaml
+**/__pycache__

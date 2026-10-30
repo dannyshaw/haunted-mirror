@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "haunted-mirror"
+version = "0.1.0"
+description = "Haunt a live camera feed: people see their reflection, and something standing behind them that isn't there."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "opencv-python>=4.8",
+    "numpy",
+    "flask>=2.2",
+    "openvino>=2024.0",
+    "pyyaml",
+]
+keywords = ["halloween", "webcam", "rtsp", "computer-vision", "frigate"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Multimedia :: Video",
+]
+
+[project.urls]
+Homepage = "https://github.com/dannyshaw/haunted-mirror"
+
+[project.scripts]
+haunted-mirror = "haunted_mirror.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+haunted_mirror = ["models/*"]

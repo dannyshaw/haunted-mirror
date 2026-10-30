@@ -1,0 +1,18 @@
+# Copy to feeds.yaml and edit. Every key except `source` is optional.
+width: 960            # working width; bigger is sharper and slower
+mirror: true          # flip left-right so it reads as a mirror
+
+feeds:
+  front:
+    source: rtsp://user:password@192.168.1.50:554/stream1
+    # Decorations the detector mistakes for people (skeletons, scarecrows).
+    # Boxes in 0-1 coordinates of the *mirrored* picture: x1, y1, x2, y2.
+    # Open http://<host>:8080/front/tracks.jpg to read off positions.
+    exclude:
+      - [0.36, 0.24, 0.49, 0.63]
+    # Record passers-by and replay them later as phantoms. This stores
+    # footage of whoever walks past; check that's OK where you live.
+    phantoms: false
+
+  # one line per extra camera is enough
+  porch: http://192.168.1.60/mjpeg

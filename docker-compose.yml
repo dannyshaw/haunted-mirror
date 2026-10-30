@@ -1,0 +1,21 @@
+# Haunted Mirror + mediamtx, so every feed is also available over RTSP:
+#   web:   http://<host>:8080/            (fullscreen page / MJPEG)
+#   rtsp:  rtsp://<host>:8554/<feed name>
+services:
+  haunted-mirror:
+    image: ghcr.io/dannyshaw/haunted-mirror:latest
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./feeds.yaml:/config/feeds.yaml:ro
+      - ./data:/data
+    command: ["--config", "/config/feeds.yaml", "--publish", "rtsp://mediamtx:8554"]
+    depends_on: [mediamtx]
+
+  mediamtx:
+    image: bluenviron/mediamtx:1
+    restart: unless-stopped
+    ports:
+      - "8554:8554"
